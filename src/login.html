@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+    <div id="header">
+        <div class="logo">
+            <h1><a href="#" class="icons" title="名鞋库">名鞋库</a></h1>
+        </div>
+    </div>
+    <div id="main">
+        <div class="form" style="border-color: orangered;">
+            <div class="top" style="text-align: center;">会员登录</div>
+            <div class="bot">
+                <div class="box1"></div>
+                <form action="./php/login.php" method="POST">
+                    <div>
+                        <span>用户名：</span><input type="text" name="un" placeholder="邮箱/手机/用户名" id="un">
+                    </div>
+                    <div>
+                        <span>密码：</span><input type="password" name="mm" id="mm">
+                    </div>
+                    <div>
+                        <span>验证码：</span><input type="text" class="ma">
+                        <span class="yz"></span>
+                        <a href="javascript:;" id="qh" style="text-decoration:underline">看不清</a>              
+                    </div>
+                    <input type="submit" value="登录" class="sub">
+                </form>
+            </div>
+            <div class="bor">
+                <p>还不是名鞋库会员？</p>
+                <input type="button" value="马上注册" id="zhuche">
+            </div>
+        </div>
+    </div>
+    <script src="./js/ajax.js"></script>
+    <script src="./js/public.js"></script>
+    <script src="./js/cookie.js"></script>
+    <script>
+        var box1=document.getElementsByClassName('box1')[0];
+        var un=document.getElementById('un')
+        var mm=document.getElementById('mm')
+        var form=document.getElementsByTagName('form')[0];
+        form.onsubmit=function(e){
+            var username=un.value;
+            var password=mm.value;
+            e=window.event||e;
+            e.preventDefault?e.preventDefault():e.returnValue=false;
+            if(ma.value==yz.innerHTML){
+                postSend('./php/login.php',function(res){
+                    if(res=="true"){
+                        window.location.href="./index.html";
+                        setCookie('username',username,7)
+                    }else{
+                        box1.innerHTML=res;
+                    }
+                },`un=${username}&mm=${password}`)
+            }else{
+                box1.innerHTML="验证码输入错误"
+            }
+        }
+        //验证码随机
+        var ma=document.getElementsByClassName('ma')[0];
+        var yz=document.getElementsByClassName('yz')[0];
+        var qh=document.getElementById('qh');
+        yz.innerHTML=rand(1000,9999);
+        ma.onclick=function(){
+            yz.style.display='inline-block';
+        }
+        qh.onclick=function(){
+            yz.innerHTML=rand(1000,9999)
+        }
+        //跳转注册
+        var zhuche=document.getElementById('zhuche');
+        zhuche.onclick=function(){
+            window.location.href="./zhuche.html"
+        }
+    </script>
+</body>
+</html>

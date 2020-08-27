@@ -1,0 +1,122 @@
+#header{
+    height: 76px;
+    width: 990px;
+    margin: 0 auto;
+}
+.logo h1{
+    margin-top: 30px;
+}
+.logo a{
+    display: block;
+    background-position: 0 -1px;
+    width: 421px;
+    height: 63px;
+    text-indent: -9999px;
+}
+.icons{
+    background: url(../images/default_icon_bg.png) no-repeat;
+}
+.ret{
+    margin: 0 auto;
+    width: 780px;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 10px;
+}
+.ret a{
+    color: #999;
+}
+.ret a:hover{
+    color: #ff6201;
+    border-bottom: 1px solid #ff6201;
+}
+#main{
+    width: 990px;
+    margin: 0 auto;
+    border-bottom: 2px solid #ce3c3b;
+}
+.form{
+    width: 780px;
+    height: 440px;
+    border: 1px solid #efefef;
+    margin: 0 auto 30px;
+    box-shadow: 5px 0px 20px #efefef;
+}
+.form .top{
+    height: 30px;
+    border-bottom: 1px solid #efefef;
+    background: #f8f8f8;
+    line-height: 30px;
+    font-size: 16px;
+    color: #888;
+    padding-left: 4px;
+}
+.form .bot{
+    padding: 46px 0;
+    float: left;
+}
+.box1{
+    width: 230px;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 156px;
+    color: red;
+}
+.bot div{
+    margin-bottom: 16px;
+}
+.bot span{
+    display: inline-block;
+    width: 156px;
+    text-align: right;
+}
+.bot span.yz{
+    display: inline-block;
+    width: 54px;
+    border: 1px solid #000;
+    font-size: 20px;
+    line-height: 20px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: left;
+    display: none;
+}
+.bot input{
+    width: 230px;
+    height: 28px;
+    border: 1px solid #ccc;
+
+}
+.bot .ma{
+    width: 68px;
+    height: 28px;
+}
+.bot .sub{
+    border: none;
+    border-radius: 4px;
+    width: 90px;
+    height: 38px;
+    background: #ff6201;
+    color: #fff;
+    text-align: center;
+    line-height: 38px;
+    margin: 54px 0 0 156px;
+}
+.bor{
+    float: right;
+    padding: 112px 88px 0 0;
+}
+.bor p{
+    line-height: 36px;
+    color: #000;
+}
+.bor input{
+    border: 1px solid #eecd90;
+    border-radius: 4px;
+    width: 90px;
+    height: 38px;
+    background: #faedd6;
+    color: #cc6666;
+    text-align: center;
+    line-height: 38px;
+}

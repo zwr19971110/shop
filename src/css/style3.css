@@ -1,0 +1,127 @@
+.inner{
+    width: 980px;
+    margin: 0 auto;
+}
+#top{
+    height: 28px;
+    width: 100%;
+    background: #eee;
+    border-bottom: 1px solid #e9e9e9;
+}
+#top p{
+    width: 980px;
+    margin: 0 auto;
+}
+#top p a:hover{
+    color: #f60;
+    text-decoration: underline;
+}
+.icons{
+    background: url(../images/default_icon_bg.png) no-repeat;
+}
+.logo h1{
+    margin-top: 10px;
+}
+.logo a{
+    display: block;
+    background-position: 0 -1px;
+    width: 421px;
+    height: 63px;
+    text-indent: -9999px;
+}
+#main h2{
+    line-height: 50px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+#main .thead{
+    border: 1px solid #e3e3e3;
+    background: #fafafa;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+}
+.thead table{
+    width: 100%;
+}
+.span-1{
+    width: 90px;
+    text-align: center;
+}
+#main .tbody{
+    border: 1px solid #f0f0f0;
+    padding: 0 20px;
+    border-top: 0;
+    /* height: 100px; */
+}
+.tbody .show{
+    padding: 60px 20px 60px 220px;
+    font-size: 14px;
+}
+.tbody .show img{
+    margin-right: 40px;
+}
+.tbody .show a{
+    color: #f60;
+}
+.tbody .show a:hover{
+    color: #e00;
+    text-decoration: underline;
+}
+.tbody table{
+    width: 100%;
+}
+.tbody table td{
+    border-bottom: 1px dotted #ddd;
+    line-height: 1.4em;
+    color: #666;
+    height: 80px;
+}
+.tbody table img{
+    width: 50px;
+}
+.tbody table i{
+    display: block;
+    color: #bbb;
+}
+.icons3{
+    background: url(../images/cart.png) no-repeat;
+}
+.tbody table td .less {
+    float: left;
+    width: 15px;
+    height: 15px;
+    background-position: 0 -301px;
+    margin-top: 10px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+.tbody table td .less:active {
+    background-position: 0 -317px;
+  }
+.tbody table td .num {
+    float: left;
+    width: 34px;
+    height: 22px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 22px;
+    background: #fff;
+    margin: 6px 4px 0;
+  }
+.tbody table td .plus {
+    float: left;
+    width: 15px;
+    height: 15px;
+    background-position: -16px -301px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+.tbody table td .plus:active {
+    background-position: -16px -317px;
+  }
+.tbody table td .del:hover{
+    color: #f60;
+}
