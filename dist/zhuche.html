@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>用户注册</title><link rel=stylesheet href=css/reset.css><link rel=stylesheet href=css/style1.css></head><body><div id=header><div class=logo><h1><a href=# class=icons title=名鞋库>名鞋库</a></h1></div></div><div class=ret><a href=./index.html>返回首页</a></div><div id=main><div class=form><div class=top>名鞋库用户注册</div><div class=bot><div class=box1></div><form action=./php/zhuche.php method=POST><div><span>用户名：</span><input type=text name=un placeholder=邮箱/手机 id=un></div><div><span>密码：</span><input type=password name=mm id=mm></div><div><span>验证码：</span><input type=text class=ma> <span class=yz></span> <a href=javascript:; id=qh style=text-decoration:underline>看不清</a></div><input type=submit value=注册新用户 class=sub></form></div><div class=bor><p>已经有名鞋库账号？</p><input type=button value=现在登录 id=login></div></div></div><script src=./js/ajax.js></script><script src=./js/public.js></script><script>var box1=document.getElementsByClassName('box1')[0];
+    var un=document.getElementById('un')
+    var mm=document.getElementById('mm')
+    var form=document.getElementsByTagName('form')[0];
+    //点击上传数据到数据库进行判断
+    form.onsubmit=function(e){
+        var username=un.value;
+        var password=mm.value;
+        e=window.event||e;
+        e.preventDefault?e.preventDefault():e.returnValue=false;
+        //判断验证码是否正确
+        if(ma.value==yz.innerHTML){
+            postSend('./php/zhuche.php',function(res){
+                console.log(res)
+                //判断数据库中是否已经注册
+                if(res=="false"){
+                    box1.innerHTML="用户名已存在!";
+                }else{
+                    box1.innerHTML=res;
+                }
+            },`un=${username}&mm=${password}`)
+        }else{
+            box1.innerHTML="验证码输入错误"
+        }
+    }
+    //验证码随机
+    var ma=document.getElementsByClassName('ma')[0];
+    var yz=document.getElementsByClassName('yz')[0];
+    var qh=document.getElementById('qh');
+    yz.innerHTML=rand(1000,9999);
+    ma.onclick=function(){
+        yz.style.display='inline-block';
+    }
+    qh.onclick=function(){
+        yz.innerHTML=rand(1000,9999)
+    }
+    //跳转登录
+    var login=document.getElementById('login');
+    login.onclick=function(){
+        window.location.href="./login.html"
+    }</script></body></html>

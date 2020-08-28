@@ -1,0 +1,1 @@
+"use strict";function getSend(e,n){var t=new XMLHttpRequest;t.open("get",e),t.onload=function(){n(t.responseText)},t.send(null)}function postSend(e,n,t){var o=new XMLHttpRequest;o.open("post",e),o.onload=function(){n(o.responseText)},o.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),o.send(t)}

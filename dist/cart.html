@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>购物车</title><link rel=stylesheet href=./css/reset.css><link rel=stylesheet href=./css/style3.css></head><body><div id=top><p>欢迎您，<span class=yh></span>！ <a href=# class=exit>[退出]</a></p></div><div id=header class=inner><div class=logo><h1><a href=# class=icons title=名鞋库>名鞋库</a></h1></div></div><div id=warp class=inner><img src=https://images.s.cn/statics/cartnav-step01.jpg alt=""></div><div id=main class=inner><h2>我的购物车</h2><div class=thead><table><tr><th width=28px>编号</th><th>商品信息</th><th class=span-1>销售价格</th><th class=span-1>数量</th><th class=span-1>折扣/优惠</th><th class=span-1>小计</th><th class=span-1>操作</th></tr></table></div><div class=tbody><div class=show><img src=./images/empty.gif alt=""> 您还没有挑选商品， <a href=./index.html>返回首页</a>。</div><table></table></div></div></body><script src=./js/cookie.js></script><script src=./lib/jquery-1.12.4.js></script></html><script>//头部显示登录者名字
+    var username=getCookie('username');
+    if(username!=undefined){
+        document.querySelector('.yh').innerHTML=username;
+    }else{
+        document.querySelector('.yh').innerHTML="";
+    }
+    //退出当前登录
+    $('.exit').click(function(){
+        removeCookie('username')
+    })
+
+    //添加购物车商品
+    function showCart(){
+        $.ajax({
+            url:'./php/showlist.php',
+            dataType:'json',
+            success:function(res){
+                if(res.code==1){
+                    $('.show').css({
+                        display:"none"
+                    })
+                }
+                $('.tbody>table').html("");
+                $.each(res.data,function(index,item){
+                    $('.tbody>table').append(`
+                    <tr>
+                        <td width="34px">${item.product_id}</td>
+                        <td width="78px">
+                            <img src="${item.product_img}" alt="">
+                        </td>          
+                        <td>
+                            ${item.product_name}
+                            <i>(尺码:${item.product_size},颜色:${item.product_color})</i>
+                        </td>   
+                        <td class="span-1">￥${item.product_price}</td>           
+                        <td class="span-1">
+                            <span class="less icons3"></span>
+                            <span class="num">${item.product_num}</span>
+                            <span class="plus icons3"></span>
+                        </td>          
+                        <td class="span-1">-￥${item.product_discount*item.product_num}</td>          
+                        <td class="span-1">￥${item.product_subtotal*item.product_num}</td>          
+                        <td class="span-1"><a href="javascript:;" class="del">删除</a></td>
+                    </tr>
+                    `)
+                })
+            }
+        })
+    }
+    showCart()
+    //删除商品
+    $('.tbody>table').on('click','.del',function(){
+        var id = $(this).parent().parent().children().eq(0).html();
+        $.ajax({
+            url:'./php/delwq.php',
+            dataType:'json',
+            data:{
+                id:id
+            },
+            success:function(res){
+                if(res.code){
+                    showCart();
+                }
+            }
+        })
+    })
+    //增加商品
+    $('.tbody>table').on('click','.plus',function(){
+        var id = $(this).parent().parent().children().eq(0).html();
+        var that = this;
+        $.ajax({
+            url:"./php/updatewq.php",
+            dataType:'json',
+            data:{
+                type:'add',
+                id:id
+            },
+            success:function(){
+                $(that).prev().html(parseInt($(that).prev().html())+1)
+                $(that).parent().next().html("-￥"+$(that).prev().html()*184)
+                $(that).parent().next().next().html("￥"+$(that).prev().html()*295)
+            }
+        })
+    })
+    //减少商品
+    $('.tbody>table').on('click','.less',function(){
+        var id = $(this).parent().parent().children().eq(0).html();
+        var that=this;
+        $.ajax({
+            url:'./php/updatewq.php',
+            dataType:'json',
+            data:{
+                type:'',
+                id:id
+            },
+            success:function(){
+                if(parseInt($(that).next().html())>1){
+                    $(that).next().html(parseInt($(that).next().html())-1)
+                    $(that).parent().next().html("-￥"+$(that).next().html()*184)
+                    $(that).parent().next().next().html("￥"+$(that).next().html()*295)
+                }
+            }
+        })
+    })</script>
